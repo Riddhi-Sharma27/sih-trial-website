@@ -10,146 +10,161 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 
 export default function LandingPage() {
-  const [logoLoaded, setLogoLoaded] = useState(false)
-  const [logoMoved, setLogoMoved] = useState(false)
-  const [showContent, setShowContent] = useState(false)
   const router = useRouter()
+  const [showLoader, setShowLoader] = useState(true)
+  const [logoAnimated, setLogoAnimated] = useState(false)
 
   useEffect(() => {
-    const logoTimer = setTimeout(() => {
-      setLogoLoaded(true)
-      setTimeout(() => {
-        setLogoMoved(true)
-        setTimeout(() => setShowContent(true), 800)
-      }, 1000)
-    }, 2000)
+    // Show loader for 3 seconds, then animate logo
+    const timer = setTimeout(() => {
+      setShowLoader(false)
+      setLogoAnimated(true)
+    }, 3000)
 
-    return () => clearTimeout(logoTimer)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleGetStarted = () => {
     router.push("/dashboard")
   }
 
+  const handleVision = () => {
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handleServices = () => {
+    document.getElementById('domain')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handleContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
-    <div className="bg-transparent relative overflow-x-hidden">
-      {/* Decorative blue blobs */}
-      {showContent && (
-        <>
-          <div className="absolute top-60 right-330 w-80 h-100 bg-blue-500/20 rounded-full blur-3xl animate-blob -z-20"></div>
-          <div className="absolute top-0 left-320 w-96 h-80 bg-blue-500/10 rounded-full blur-2xl animate-blob -z-20"></div>
-          <div className="absolute top-150 left-300 w-400 h-80 bg-blue-500/20 rounded-full blur-3xl animate-blob -z-20"></div>
-        </>
-      )}
-
-      {/* Landing Section */}
-      <section id="home" className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-        {/* Background overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-blue-900/10" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-        {/* Navbar */}
-        <nav
-          className={`fixed top-5 left-1/2 -translate-x-1/2 w-3/4 md:w-1/3 px-8 py-4 flex justify-center space-x-16 transition-all duration-1000 z-50 ${
-            showContent ? "opacity-100" : "opacity-0"
-          } bg-blue-200/10 backdrop-blur-md rounded-3xl`}
-        >
-          <a href="#home" className="text-lg md:text-xl text-blue-200 hover:text-blue-600 transition font-medium">Home</a>
-          <a href="#features" className="text-lg md:text-xl text-blue-200 hover:text-blue-600 transition font-medium">About Us</a>
-          <a href="#contact" className="text-lg md:text-xl text-blue-200 hover:text-blue-600 transition font-medium">Contact Us</a>
-        </nav>
-
-        {/* Login/Signup */}
-        {showContent && (
-          <div className="fixed top-7 right-7 z-50 transition-all duration-1000">
-            <Button
-              onClick={handleGetStarted}
-              size="lg"
-              className="bg-blue-600 border border-blue-500 hover:border-blue-400 hover:bg-blue-800 text-white"
-            >
-              Login / Signup
-            </Button>
-          </div>
-        )}
-
-        {/* Logo */}
-        <div
-          className={`absolute transition-all duration-1000 ${
-            logoMoved
-              ? "top-6 left-6 w-16 h-16"
-              : "top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2"
-          }`}
-        >
-          <div className="relative w-full h-full">
-            <div className="absolute inset-0 border-2 border-primary rounded-full animate-pulse">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-primary rounded-full flex items-center justify-center">
-                <div className="w-1/2 h-1/2 bg-white rounded-full relative overflow-hidden">
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-r from-transparent via-blue-400 to-transparent w-full h-0.5 top-1/2 -translate-y-1/2 ${
-                      logoLoaded ? "animate-pulse" : ""
-                    }`}
-                  />
-                </div>
+    <>
+      {/* Loading Screen */}
+      {showLoader && (
+        <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
+          <div className="relative">
+            {/* Circular loading animation */}
+            <div className="w-32 h-32 border-4 border-gray-600 border-t-white rounded-full animate-spin"></div>
+            {/* Center logo */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                <span className="text-black font-bold text-2xl">W</span>
               </div>
-              <div
-                className={`absolute inset-0 bg-black transition-all duration-1000 ${
-                  logoLoaded ? "scale-y-0" : "scale-y-100"
-                } origin-top rounded-full`}
-              />
             </div>
-
-            {/* Scanning rings */}
-            <div
-              className={`absolute inset-0 border border-blue-400/30 rounded-full animate-ping ${
-                logoLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ animationDuration: "3s" }}
-            />
-            <div
-              className={`absolute inset-2 border border-blue-400/20 rounded-full animate-ping ${
-                logoLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ animationDuration: "2s", animationDelay: "0.5s" }}
-            />
           </div>
         </div>
+      )}
 
-        {/* Landing Content */}
-        <div
-          className={`relative z-10 text-center transition-all duration-1000 ${
-            showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <img
-            src="/cctv-camera.jpg"
-            className="absolute inset-0 mx-auto my-auto w-120 opacity-30 -z-10"
-            style={{ top: "110%", left: "50%", transform: "translate(-50%, -50%)" }}
+      <div className="bg-black relative overflow-x-hidden min-h-screen">
+      {/* Camera background */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-[500px] h-[500px] opacity-30">
+          <img 
+            src="/cctv-camera.jpg" 
+            alt="Security Camera" 
+            className="w-full h-full object-contain filter brightness-75 contrast-125"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+      </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight relative z-10">
-            WatcherAI
+      {/* Animated background spheres - repositioned to avoid camera */}
+      <div className="absolute top-16 right-16 w-72 h-72 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-16 left-16 w-64 h-64 bg-gradient-to-br from-indigo-500/15 to-blue-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/3 left-1/3 w-48 h-48 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+
+      {/* Landing Section */}
+      <section id="home" className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4">
+        {/* Top Navigation */}
+        <nav className="fixed top-8 left-8 z-50">
+          <div className={`flex items-center space-x-2 transition-all duration-1000 ${
+            logoAnimated ? 'logo-reveal opacity-100' : 'opacity-0'
+          }`}>
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center pulse-glow">
+              <span className="text-black font-bold text-sm">W</span>
+            </div>
+            <span className="text-white text-xl font-bold tracking-wider">WATCHERAI</span>
+          </div>
+        </nav>
+
+        {/* Top Right Button */}
+        <div className="fixed top-8 right-8 z-50">
+          <Button
+            onClick={() => router.push("/dashboard")}
+            className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300"
+          >
+            ADMIN DASHBOARD
+          </Button>
+        </div>
+
+        {/* Main Content */}
+        <div className="relative z-10 text-center max-w-6xl mx-auto">
+          {/* Hero Title */}
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-none">
+            Unlocking Potential,
+            <br />
+            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Delivering Excellence.
+            </span>
           </h1>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-2 font-light relative z-10">
-            Advanced Surveillance Solutions
-          </p>
-          <p className="text-sm md:text-lg text-gray-400 mb-8 max-w-md mx-auto leading-relaxed relative z-10">
-            Protecting what matters most with cutting-edge security technology and 24/7 monitoring systems.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap justify-center gap-6 mb-16">
             <Button
-              onClick={handleGetStarted}
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
+              onClick={handleVision}
+              className="bg-transparent border border-gray-600 hover:border-gray-400 text-white rounded-full px-8 py-3 text-sm font-medium transition-all duration-300 hover:bg-gray-800/50"
             >
-              Access System
+              OUR VISION →
             </Button>
             <Button
-              variant="outline"
-              size="lg"
-              className="border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white px-8 py-3 text-lg font-medium transition-all duration-300 bg-transparent"
+              onClick={handleServices}
+              className="bg-transparent border border-gray-600 hover:border-gray-400 text-white rounded-full px-8 py-3 text-sm font-medium transition-all duration-300 hover:bg-gray-800/50"
             >
-              Learn More
+              SERVICES →
             </Button>
+            <Button
+              onClick={handleContact}
+              className="bg-transparent border border-gray-600 hover:border-gray-400 text-white rounded-full px-8 py-3 text-sm font-medium transition-all duration-300 hover:bg-gray-800/50"
+            >
+              GET IN TOUCH →
+            </Button>
+          </div>
+
+          {/* Description */}
+          <div className="flex flex-col md:flex-row items-start justify-between max-w-4xl mx-auto">
+            <div className="md:w-1/2 text-left">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                At WatcherAI, we believe in harnessing the power of technology to empower security institutions and businesses alike.
+              </p>
+            </div>
+            <div className="md:w-1/2 flex justify-end mt-8 md:mt-0">
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-2 border border-gray-600 rounded-full flex items-center justify-center">
+                  <span className="text-gray-400">↓</span>
+                </div>
+                <span className="text-gray-400 text-sm">SCROLL DOWN</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Central Camera Image */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10">
+            <div className="relative">
+              {/* Main camera image */}
+              <img
+                src="/cctv-camera.jpg"
+                alt="Security Camera"
+                className="w-96 h-96 md:w-[500px] md:h-[500px] object-cover rounded-full opacity-20 blur-sm"
+              />
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full"></div>
+              {/* Scanning rings */}
+              <div className="absolute inset-0 border border-blue-400/30 rounded-full animate-ping" style={{ animationDuration: "3s" }}></div>
+              <div className="absolute inset-4 border border-blue-400/20 rounded-full animate-ping" style={{ animationDuration: "2s", animationDelay: "0.5s" }}></div>
+            </div>
           </div>
         </div>
       </section>
@@ -394,6 +409,7 @@ export default function LandingPage() {
       <footer className="text-center py-6">
         <p className="text-xs text-gray-500">© 2024 SecureVision. Advanced Security Solutions.</p>
       </footer>
-    </div>
+      </div>
+    </>
   )
 }

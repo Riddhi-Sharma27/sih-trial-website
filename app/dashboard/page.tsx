@@ -27,7 +27,6 @@ const menuItems = [
   { name: "Cameras", icon: Camera },
   { name: "Search", icon: Search }, // <-- Search menu item
   { name: "Archives", icon: Archive },
-  { name: "People", icon: User },
   { name: "Settings", icon: Settings },
 ]
 

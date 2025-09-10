@@ -12,6 +12,7 @@ interface User {
 interface AuthContextType {
   user: User | null
   loading: boolean
+  initialLoading: boolean
   signIn: (employeeId: string, password: string) => Promise<void>
   signUp: (name: string, employeeId: string, password: string) => Promise<void>
   logout: () => Promise<void>
@@ -46,8 +47,14 @@ const DEMO_USERS = [
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [initialLoading, setInitialLoading] = useState(true)
 
   useEffect(() => {
+    // Simulate initial loading time to show the loading screen
+    const initTimer = setTimeout(() => {
+      setInitialLoading(false)
+    }, 3000) // Show loading screen for 3 seconds minimum
+
     const storedUser = localStorage.getItem("securevision_user")
     if (storedUser) {
       try {
@@ -56,7 +63,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.removeItem("securevision_user")
       }
     }
-    setLoading(false)
+    
+    // Set regular loading to false after checking localStorage
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+
+    return () => clearTimeout(initTimer)
   }, [])
 
   const signIn = async (employeeId: string, password: string) => {
@@ -115,6 +128,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value = {
     user,
     loading,
+    initialLoading,
     signIn,
     signUp,
     logout,

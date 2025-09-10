@@ -5,24 +5,18 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Autoplay } from "swiper/modules"
+import { LoadingScreen } from "@/components/loading-screen"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 
 export default function LandingPage() {
   const router = useRouter()
-  const [showLoader, setShowLoader] = useState(true)
-  const [logoAnimated, setLogoAnimated] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    // Show loader for 3 seconds, then animate logo
-    const timer = setTimeout(() => {
-      setShowLoader(false)
-      setLogoAnimated(true)
-    }, 3000)
-
-    return () => clearTimeout(timer)
-  }, [])
+  const handleLoadingComplete = () => {
+    setIsLoading(false)
+  }
 
   const handleGetStarted = () => {
     router.push("/dashboard")
@@ -40,50 +34,23 @@ export default function LandingPage() {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // Show loading screen on initial visit
+  if (isLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />
+  }
+
   return (
-    <>
-      {/* Loading Screen */}
-      {showLoader && (
-        <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
-          <div className="relative">
-            {/* Circular loading animation */}
-            <div className="w-32 h-32 border-4 border-gray-600 border-t-white rounded-full animate-spin"></div>
-            {/* Center logo */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <span className="text-black font-bold text-2xl">W</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="bg-black relative overflow-x-hidden min-h-screen">
-      {/* Camera background */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-[500px] h-[500px] opacity-30">
-          <img 
-            src="/cctv-camera.jpg" 
-            alt="Security Camera" 
-            className="w-full h-full object-contain filter brightness-75 contrast-125"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        </div>
-      </div>
-
-      {/* Animated background spheres - repositioned to avoid camera */}
-      <div className="absolute top-16 right-16 w-72 h-72 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-16 left-16 w-64 h-64 bg-gradient-to-br from-indigo-500/15 to-blue-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/3 left-1/3 w-48 h-48 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+    <div className="bg-black relative overflow-x-hidden min-h-screen">
+      {/* Animated background spheres */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-indigo-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
       {/* Landing Section */}
       <section id="home" className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4">
         {/* Top Navigation */}
         <nav className="fixed top-8 left-8 z-50">
-          <div className={`flex items-center space-x-2 transition-all duration-1000 ${
-            logoAnimated ? 'logo-reveal opacity-100' : 'opacity-0'
-          }`}>
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center pulse-glow">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
               <span className="text-black font-bold text-sm">W</span>
             </div>
             <span className="text-white text-xl font-bold tracking-wider">WATCHERAI</span>
@@ -93,10 +60,10 @@ export default function LandingPage() {
         {/* Top Right Button */}
         <div className="fixed top-8 right-8 z-50">
           <Button
-            onClick={() => router.push("/dashboard")}
+            onClick={handleGetStarted}
             className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300"
           >
-            ADMIN DASHBOARD
+            GET IN TOUCH
           </Button>
         </div>
 
@@ -409,7 +376,6 @@ export default function LandingPage() {
       <footer className="text-center py-6">
         <p className="text-xs text-gray-500">© 2024 SecureVision. Advanced Security Solutions.</p>
       </footer>
-      </div>
-    </>
+    </div>
   )
 }

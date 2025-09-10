@@ -5,13 +5,14 @@ import type React from "react"
 import { useAuth } from "@/lib/auth-context"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
+import { LoadingScreen } from "./loading-screen"
 
 interface ProtectedRouteProps {
   children: React.ReactNode
 }
 
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user, loading } = useAuth()
+  const { user, loading, initialLoading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
@@ -20,6 +21,12 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
   }, [user, loading, router])
 
+  // Show the enhanced loading screen during initial load
+  if (initialLoading) {
+    return <LoadingScreen onComplete={() => {}} />
+  }
+
+  // Show simple loading for other loading states
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">

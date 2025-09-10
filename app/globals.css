@@ -3,38 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Custom animations for loading and logo */
-@keyframes logoReveal {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) rotate(-180deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(-90deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-  }
-}
-
-.logo-reveal {
-  animation: logoReveal 1s ease-out forwards;
-}
-
-.pulse-glow {
-  animation: pulseGlow 2s ease-in-out infinite;
-}
-
 :root {
   /* Updated color scheme for security surveillance theme with blue and black */
   --background: oklch(0.02 0.01 240); /* Almost pure black with blue tint */

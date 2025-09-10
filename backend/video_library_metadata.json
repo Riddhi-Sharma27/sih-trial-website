@@ -1,1 +1,82 @@
-[{"video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_1.mp4", "start_time_offset": "00:00:00", "end_time_offset": "00:00:19", "absolute_start_time": "2025-09-09 23:14:01", "absolute_end_time": "2025-09-09 23:14:20", "start_frame": 0, "end_frame": 594, "document": "The following event occurred in the video 'video_1.mp4' between 2025-09-09 23:14:01 and 2025-09-09 23:14:20. ..."}, {"video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_1.mp4", "start_time_offset": "00:00:20", "end_time_offset": "00:00:28", "absolute_start_time": "2025-09-09 23:14:21", "absolute_end_time": "2025-09-09 23:14:29", "start_frame": 600, "end_frame": 840, "document": "The following event occurred in the video 'video_1.mp4' between 2025-09-09 23:14:21 and 2025-09-09 23:14:29. ..."}, {"video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_2.mp4", "start_time_offset": "00:00:00", "end_time_offset": "00:00:19", "absolute_start_time": "2025-09-09 23:14:51", "absolute_end_time": "2025-09-09 23:15:10", "start_frame": 0, "end_frame": 594, "document": "The following event occurred in the video 'video_2.mp4' between 2025-09-09 23:14:51 and 2025-09-09 23:15:10. ..."}, {"video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_2.mp4", "start_time_offset": "00:00:40", "end_time_offset": "00:00:47", "absolute_start_time": "2025-09-09 23:15:31", "absolute_end_time": "2025-09-09 23:15:38", "start_frame": 1200, "end_frame": 1428, "document": "The following event occurred in the video 'video_2.mp4' between 2025-09-09 23:15:31 and 2025-09-09 23:15:38. ..."}, {"video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_3.mp4", "start_time_offset": "00:00:00", "end_time_offset": "00:00:19", "absolute_start_time": "2025-09-09 23:14:56", "absolute_end_time": "2025-09-09 23:15:15", "start_frame": 0, "end_frame": 594, "document": "The following event occurred in the video 'video_3.mp4' between 2025-09-09 23:14:56 and 2025-09-09 23:15:15. ..."}]
+[
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_1.mp4",
+    "start_time_offset": "00:00:00",
+    "end_time_offset": "00:00:19",
+    "absolute_start_time": "2025-09-09 23:14:01",
+    "absolute_end_time": "2025-09-09 23:14:20",
+    "start_frame": 0,
+    "end_frame": 594,
+    "document": "Scene description: The surveillance footage, timestamped around 3:45 AM, captures a street corner in a seemingly quiet town. Initially, a single person is seen walking on the far sidewalk. Within seconds, two other individuals appear and intercept the pedestrian. The interaction rapidly escalates into a physical confrontation. The two aggressors are seen pushing and attacking the victim, forcing them across the road towards the camera's viewpoint. The event is a clear and sudden assault in an otherwise deserted public space."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_1.mp4",
+    "start_time_offset": "00:00:20",
+    "end_time_offset": "00:00:28",
+    "absolute_start_time": "2025-09-09 23:14:21",
+    "absolute_end_time": "2025-09-09 23:14:29",
+    "start_frame": 600,
+    "end_frame": 840,
+    "document": "Scene description: The footage, captured in the early morning hours on a Sunday, shows a deserted street corner illuminated by streetlights. An unidentified individual dressed in a dark jacket and trousers is observed carrying a large, white, rectangular object. The person hurriedly places the object on the paved sidewalk and then exits the camera's view within two seconds. The object, which resembles a safe or a large cash box, is left abandoned in a public space. This action is highly suspicious, suggesting the disposal of stolen property or evidence of a crime."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_2.mp4",
+    "start_time_offset": "00:00:00",
+    "end_time_offset": "00:00:19",
+    "absolute_start_time": "2025-09-09 23:14:51",
+    "absolute_end_time": "2025-09-09 23:15:10",
+    "start_frame": 0,
+    "end_frame": 594,
+    "document": "Scene description: The black-and-white, low-light footage depicts a rapidly escalating altercation in a confined indoor space. The sequence begins with two men in suits, one older with white hair and another bald, interacting near a wall. The situation abruptly turns violent as a third man in a short-sleeved shirt lunges into the frame, targeting the two men. During the ensuing chaos, the older man is forced back and falls into a seated position on a low stool or chair. The sudden, unprovoked nature of the attack is the primary event, indicating a potential assault or security breach."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_2.mp4",
+    "start_time_offset": "00:00:20",
+    "end_time_offset": "00:00:39",
+    "absolute_start_time": "2025-09-09 23:15:11",
+    "absolute_end_time": "2025-09-09 23:15:30",
+    "start_frame": 600,
+    "end_frame": 1194,
+    "document": "Scene description: The surveillance footage captures a rapidly escalating violent incident at night. Initially, two men are seen in a physical struggle. The conflict quickly intensifies as two additional men join the fray, overpowering the first individual. The event culminates in extreme violence as one of the newcomers lifts a chair, preparing to strike the group engaged in the brawl. The scene is chaotic and indicates a severe and immediate security threat."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_2.mp4",
+    "start_time_offset": "00:00:40",
+    "end_time_offset": "00:00:47",
+    "absolute_start_time": "2025-09-09 23:15:31",
+    "absolute_end_time": "2025-09-09 23:15:38",
+    "start_frame": 1200,
+    "end_frame": 1428,
+    "document": "Scene description: The black and white surveillance footage captures a violent incident at what appears to be an interior entrance or stairwell of a building, likely during nighttime hours as indicated by the infrared recording. The sequence depicts a clear physical altercation. An individual in a white, long-sleeved shirt is forcefully shoved or falls through a doorway and down a step. At least one other person is present during this initial assault. A subsequent frame shows a different scene, possibly the aftermath, where a person in a uniform, resembling a security officer, is standing over an individual who is on the floor. The event is highly suspicious and constitutes a violent assault requiring further investigation."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_3.mp4",
+    "start_time_offset": "00:00:00",
+    "end_time_offset": "00:00:19",
+    "absolute_start_time": "2025-09-09 23:14:56",
+    "absolute_end_time": "2025-09-09 23:15:15",
+    "start_frame": 0,
+    "end_frame": 594,
+    "document": "Scene description: The sequence of frames captures a scene inside a public bus during nighttime. The bus is sparsely occupied, with only one individual visible in the rear section. This person, wearing light-colored pants, is seen deliberately placing a dark backpack on the floor of the aisle. After setting the bag down, the individual proceeds to sit in an adjacent seat, leaving the backpack unattended in a conspicuous location. This action is anomalous and raises a security concern, as abandoning personal items on public transport is a significant red flag."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_3.mp4",
+    "start_time_offset": "00:00:20",
+    "end_time_offset": "00:00:39",
+    "absolute_start_time": "2025-09-09 23:15:16",
+    "absolute_end_time": "2025-09-09 23:15:35",
+    "start_frame": 600,
+    "end_frame": 1194,
+    "document": "Scene description: The surveillance footage captures the interior of a seemingly empty public bus at night. In the initial frames, a single person is seated at the very back. An object, possibly a dark bag, is visible on the floor in the aisle. The individual then stands and moves forward. Concurrently, a bright flash occurs at the rear of the bus, quickly erupting into a significant fire. The person is seen bending down near the bag on the floor as the fire grows in intensity. The rapid ignition of the fire in the presence of a lone passenger is a severe and highly suspicious event, strongly indicating arson."
+  },
+  {
+    "video_path": "C:\\Users\\riddh\\Desktop\\SIH 2025\\security-surveillance-app\\backend\\videos\\video_3.mp4",
+    "start_time_offset": "00:00:40",
+    "end_time_offset": "00:00:44",
+    "absolute_start_time": "2025-09-09 23:15:36",
+    "absolute_end_time": "2025-09-09 23:15:40",
+    "start_frame": 1200,
+    "end_frame": 1344,
+    "document": "Scene description: The surveillance footage shows a static, high-angle view of the upper deck of a public bus, apparently at night. The vehicle is unoccupied. The interior is lit, but a very bright, overexposed light source at the front of the aisle washes out details in that area and creates a strong lens flare. Rows of empty seats line both sides. The stairs to the lower deck are visible on the left. The low-resolution footage and lighting conditions make it difficult to discern fine details, but no immediate threat or motion is detected across the provided frames."
+  }
+]

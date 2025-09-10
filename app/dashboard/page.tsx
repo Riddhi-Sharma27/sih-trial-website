@@ -23,8 +23,8 @@ import { cn } from "@/lib/utils"
 
 const menuItems = [
   { name: "Dashboard", icon: Target },
-  { name: "Alerts", icon: AlertTriangle },
   { name: "Cameras", icon: Camera },
+  { name: "Alerts", icon: AlertTriangle },
   { name: "Search", icon: Search }, // <-- Search menu item
   { name: "Archives", icon: Archive },
   { name: "Settings", icon: Settings },

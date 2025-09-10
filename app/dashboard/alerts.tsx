@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Search, Expand, Download, X } from "lucide-react"
+import { Search, Expand, Download, X, Upload } from "lucide-react"
 
 type Alert = {
   id: number
@@ -40,56 +40,90 @@ const sampleAlerts: Alert[] = [
 ]
 
 export default function Alerts() {
-  const [date, setDate] = useState("today")
-  const [criticalOnly, setCriticalOnly] = useState(false)
   const [expandedAlert, setExpandedAlert] = useState<Alert | null>(null)
+
+  // State for uploaded file + analysis result
+  const [uploadedVideo, setUploadedVideo] = useState<File | null>(null)
+  const [processing, setProcessing] = useState(false)
+  const [analysisResult, setAnalysisResult] = useState<string | null>(null)
+
+  const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploadedVideo(file)
+    setProcessing(true)
+    setAnalysisResult(null)
+
+    try {
+      const formData = new FormData()
+      formData.append("video", file)
+
+      // ✅ Calls backend endpoint (FastAPI) → triggers TwillioWhatsappBotFinal.py
+      const res = await fetch("http://localhost:8000/process-video", {
+        method: "POST",
+        body: formData,
+      })
+
+      const data = await res.json()
+      // Expected: { message: "alert text OR no anomaly", scene_description: "..." }
+
+      if (data.message) {
+        setAnalysisResult(`${data.message}\n\nScene: ${data.scene_description}`)
+      } else {
+        setAnalysisResult(`No anomaly detected!\n\nScene: ${data.scene_description}`)
+      }
+    } catch (err) {
+      console.error(err)
+      setAnalysisResult("Error processing video")
+    } finally {
+      setProcessing(false)
+    }
+  }
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h2 className="text-2xl font-bold text-blue-600">Recent Alerts</h2>
-        <div className="flex items-center gap-3">
-          {/* Date Dropdown */}
-          <select
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1"
-          >
-            <option value="today">Today</option>
-            <option value="yesterday">Yesterday</option>
-            <option value="week">This Week</option>
-            <option value="month">This Month</option>
-          </select>
+      <h2 className="text-2xl font-bold text-blue-600">Alerts</h2>
 
-          {/* Critical Only Toggle */}
-          <button
-            onClick={() => setCriticalOnly(!criticalOnly)}
-            className={`px-3 py-1 rounded border ${
-              criticalOnly
-                ? "bg-red-100 text-red-600 border-red-300"
-                : "bg-gray-100 text-gray-600 border-gray-300"
-            }`}
-          >
-            Critical Only
-          </button>
+      {/* Upload Section */}
+      <div className="bg-white shadow-md border border-blue-200 rounded-lg p-8 flex flex-col items-center justify-center min-h-[250px]">
+        {!uploadedVideo && !analysisResult && !processing && (
+          <>
+            <Upload className="w-10 h-10 text-gray-500 mb-4" />
+            <label className="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+              Upload Video
+              <input
+                type="file"
+                accept="video/*"
+                className="hidden"
+                onChange={handleVideoUpload}
+              />
+            </label>
+          </>
+        )}
 
-          {/* Search Icon */}
-          <button className="p-2 rounded bg-gray-100 hover:bg-gray-200">
-            <Search className="w-5 h-5 text-gray-600" />
-          </button>
-        </div>
+        {processing && (
+          <p className="text-gray-600 font-medium">Processing video, please wait...</p>
+        )}
+
+        {analysisResult && (
+          <div className="w-full">
+            <h3 className="font-bold text-gray-900 mb-2">Analysis Result</h3>
+            <p className="text-gray-700 whitespace-pre-line">{analysisResult}</p>
+          </div>
+        )}
       </div>
 
-      {/* Alerts List */}
+      {/* Recent Alerts Section */}
       <div className="space-y-6">
+        <h3 className="text-xl font-semibold text-gray-800">Recent Alerts</h3>
         {sampleAlerts.map((alert) => (
           <div
             key={alert.id}
-            className="bg-white shadow-md border border-blue-100 rounded-lg p-6 flex gap-6 min-h-[250px]"
+            className="bg-white shadow-md border border-blue-100 rounded-lg p-6 flex gap-6 min-h-[200px]"
           >
             {/* Left: Video Placeholder */}
-            <div className="relative w-1/2 min-h-[200px] bg-gray-200 rounded flex items-center justify-center text-gray-500">
+            <div className="relative w-1/2 min-h-[150px] bg-gray-200 rounded flex items-center justify-center text-gray-500">
               Video Placeholder
               <div className="absolute top-2 right-2 flex gap-2">
                 {/* Expand Button */}
@@ -115,17 +149,15 @@ export default function Alerts() {
                 <h3 className="text-lg font-bold text-gray-900">
                   {alert.title} – {alert.location}
                 </h3>
-                <span className="text-sm text-gray-500 ml-auto">
-                  {alert.camera}
-                </span>
+                <span className="text-sm text-gray-500 ml-auto">{alert.camera}</span>
               </div>
 
               {/* Description */}
               <p className="text-gray-700 flex-1">
                 This alert indicates <strong>{alert.title}</strong> detected at{" "}
                 <strong>{alert.location}</strong> using{" "}
-                <strong>{alert.camera}</strong>. Please review the recorded
-                footage and take necessary action.
+                <strong>{alert.camera}</strong>. Please review the recorded footage and
+                take necessary action.
               </p>
 
               {/* Footer Row */}
@@ -150,8 +182,7 @@ export default function Alerts() {
             </button>
 
             <h2 className="text-xl font-bold text-blue-600 mb-4">
-              {expandedAlert.emoji} {expandedAlert.title} –{" "}
-              {expandedAlert.location}
+              {expandedAlert.emoji} {expandedAlert.title} – {expandedAlert.location}
             </h2>
 
             {/* Big Video Placeholder */}

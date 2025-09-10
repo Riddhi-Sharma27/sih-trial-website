@@ -58,3 +58,11 @@ tzdata==2025.2
 uritemplate==4.2.0
 urllib3==2.5.0
 watchdog==6.0.0
+opencv-python
+psutil
+vidgear
+twilio
+google-cloud-storage
+ultralytics
+torch
+torchvision

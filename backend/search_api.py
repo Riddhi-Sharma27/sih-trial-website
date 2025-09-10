@@ -1,6 +1,7 @@
 # backend/search_api.py
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import faiss
 import json
 import os
@@ -26,6 +27,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount system temp directory to serve clips
+app.mount("/temp", StaticFiles(directory=tempfile.gettempdir()), name="temp")
 
 # Load models/index
 embedder = SentenceTransformer(EMBEDDING_MODEL_NAME)
@@ -72,13 +76,15 @@ def search(query: str = Query(..., description="Search query text")):
 
         # Generate temporary clip
         clip_path = extract_clip(video_path, metadata["start_frame"], fps)
+        clip_name = os.path.basename(clip_path)
+        clip_url = f"/temp/{clip_name}"  # URL served by FastAPI
 
         results.append({
             "video": os.path.basename(video_path),
             "absolute_start_time": metadata["absolute_start_time"],
             "absolute_end_time": metadata["absolute_end_time"],
             "document": metadata["document"],
-            "clip_path": clip_path
+            "clip_path": clip_url  # return URL instead of absolute path
         })
 
     return {"results": results}

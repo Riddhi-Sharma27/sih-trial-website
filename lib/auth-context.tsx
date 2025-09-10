@@ -23,21 +23,21 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 const DEMO_USERS = [
   {
     id: "1",
-    name: "John Smith",
+    name: "Riddhi Sharma",
     employeeId: "SEC001",
     email: "john.smith@securevision.com",
     password: "admin123",
   },
   {
     id: "2",
-    name: "Sarah Johnson",
+    name: "Hemang Jain",
     employeeId: "SEC002",
     email: "sarah.johnson@securevision.com",
     password: "security456",
   },
   {
     id: "3",
-    name: "Mike Wilson",
+    name: "Siddhart Bansal",
     employeeId: "SEC003",
     email: "mike.wilson@securevision.com",
     password: "guard789",

@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/loading-screen"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import { Bell,Camera,Target,Search,Cpu } from "lucide-react";
 
 export default function LandingPage() {
   const router = useRouter()
@@ -269,7 +270,7 @@ export default function LandingPage() {
 
       {/* Domain Section */}
         <section
-          id="domain"
+          id="domains"
           className="w-full flex flex-col justify-start items-center bg-transparent md:px-20 snap-start relative z-0 overflow-hidden pt-32 pb-20"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
@@ -307,58 +308,58 @@ export default function LandingPage() {
           </div>
 
           {/* Full-width Feature Card */}
-          <div className="w-full bg-blue-500/10 backdrop-blur-md rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-10">
-            
-            {/* Left Side Image */}
-            <div className="flex-1 flex justify-center">
+         <div className="w-full bg-blue-500/10 backdrop-blur-md rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 h-[500px] relative">
+
+          {/* Left Side Image */}
+          <div className="absolute top-0 left-0 w-1/2 h-full overflow-hidden rounded-l-3xl md:rounded-2xl">
               <img
                 src="/smart-city.png"
                 alt="Feature"
-                className="w-full md:w-auto h-64 md:h-96 object-cover rounded-2xl shadow-lg"
+                className="w-full h-full object-cover object-center"
               />
             </div>
 
             {/* Right Side Text + Bullets */}
-            <div className="flex-1 flex flex-col justify-between items-center h-full max-w-xl mx-auto">
+            <div className="ml-auto w-full md:w-1/2 h-full flex pl-10 flex-col justify-center space-y-6 relative z-10">
             <ul className="flex flex-col gap-6">
               {/* Bullet 1 */}
               <li className="flex items-start gap-3">
                 {/* Icon at start */}
-                <img src="/icons/computer.svg" className="w-6 h-6 mt-1" alt="Computer Icon" />
-                <span className="text-lg md:text-2xl text-gray-300 pb-5">
-                  High Performance Computing
+                <Camera className="w-10 h-10 mt-1" />
+                <span className="text-lg md:text-xl text-gray-300 ">
+                  AI-powered real-time surveillance monitoring multiple cameras for anomaly detection.
                 </span>
               </li>
 
               {/* Bullet 2 */}
               <li className="flex items-start gap-3">
-                <img src="/icons/rocket.svg" className="w-6 h-6 mt-1" alt="Rocket Icon" />
-                <span className="text-lg md:text-2xl text-gray-300 pb-5">
-                  Fast Deployment
+                <Bell className="w-10 h-10 mt-1" />
+                <span className="text-lg md:text-xl text-gray-300 ">
+                  Instant alerts to authorities upon detecting suspicious or unusual activity.
                 </span>
               </li>
 
               {/* Bullet 3 */}
               <li className="flex items-start gap-3">
-                <img src="/icons/security.svg" className="w-6 h-6 mt-1" alt="Security Icon" />
-                <span className="text-lg md:text-2xl text-gray-300 pb-5">
-                  Secure & Reliable
+                <Target className="w-10 h-10 mt-1" />
+                <span className="text-lg md:text-xl text-gray-300">
+                  Multi-camera tracking to quickly locate individuals or objects of interest.
                 </span>
               </li>
 
               {/* Bullet 4 */}
               <li className="flex items-start gap-3">
-                <img src="/icons/cloud.svg" className="w-6 h-6 mt-1" alt="Cloud Icon" />
-                <span className="text-lg md:text-2xl text-gray-300 pb-5">
-                  Cloud Integration
+                <Search className="w-10 h-10 mt-1"  />
+                <span className="text-lg md:text-xl text-gray-300">
+                  AI-based smart search for recorded footage using filters and object recognition.
                 </span>
               </li>
 
               {/* Bullet 5 */}
               <li className="flex items-start gap-3">
-                <img src="/icons/analytics.svg" className="w-6 h-6 mt-1" alt="Analytics Icon" />
-                <span className="text-lg md:text-2xl text-gray-300 pb-5">
-                  Advanced Analytics
+                <Cpu className="w-10 h-10 mt-1" />
+                <span className="text-lg md:text-xl text-gray-300">
+                  Easy deployment with a user-friendly interface for rapid setup across various camera systems.
                 </span>
               </li>
             </ul>
@@ -374,7 +375,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="text-center py-6">
-        <p className="text-xs text-gray-500">© 2024 SecureVision. Advanced Security Solutions.</p>
+        <p className="text-xs text-gray-500">© 2024 WatcherAI. Advanced Security Solutions.</p>
       </footer>
     </div>
   )

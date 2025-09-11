@@ -20,7 +20,7 @@ export default function LandingPage() {
   }
 
   const handleGetStarted = () => {
-    router.push("/dashboard")
+    router.push("/auth")
   }
 
   const handleVision = () => {
@@ -64,7 +64,7 @@ export default function LandingPage() {
             onClick={handleGetStarted}
             className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-full px-6 py-2 text-sm font-medium transition-all duration-300"
           >
-            GET IN TOUCH
+            ADMIN DASHBOARD
           </Button>
         </div>
 
@@ -94,10 +94,10 @@ export default function LandingPage() {
               SERVICES →
             </Button>
             <Button
-              onClick={handleContact}
+              onClick={handleGetStarted}
               className="bg-transparent border border-gray-600 hover:border-gray-400 text-white rounded-full px-8 py-3 text-sm font-medium transition-all duration-300 hover:bg-gray-800/50"
             >
-              GET IN TOUCH →
+              ADMIN DASHBOARD →
             </Button>
           </div>
 
@@ -197,8 +197,15 @@ export default function LandingPage() {
 
               {/* Right side video placeholder */}
               <div className="flex-1 flex justify-center -ml-10">
-                <div className="w-full h-64 md:h-96 bg-blue-500/10 border border-blue-400/20 rounded-2xl flex items-center justify-center text-blue-300 -ml-10">
-                  <span className="text-lg">[ Video Placeholder ]</span>
+                <div className="w-full h-64 md:h-96 rounded-2xl overflow-hidden">
+                  <video
+                    src="/feature-1.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
@@ -227,8 +234,15 @@ export default function LandingPage() {
 
               {/* Right side video placeholder */}
               <div className="flex-1 flex justify-center -ml-10">
-                <div className="w-full h-64 md:h-96 bg-blue-500/10 border border-blue-400/20 rounded-2xl flex items-center justify-center text-blue-300 -ml-10">
-                  <span className="text-lg">[ Video Placeholder ]</span>
+                <div className="w-full h-64 md:h-96 rounded-2xl overflow-hidden">
+                  <video
+                    src="/feature-2.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
@@ -256,8 +270,15 @@ export default function LandingPage() {
 
               {/* Right side video placeholder */}
               <div className="flex-1 flex justify-center -ml-10">
-                <div className="w-12/13 h-64 md:h-96 bg-blue-500/10 border border-blue-400/20 rounded-2xl flex items-center justify-center text-blue-300 -ml-5">
-                  <span className="text-lg">[ Video Placeholder ]</span>
+                <div className="w-12/13 h-64 md:h-96 rounded-2xl overflow-hidden">
+                  <video
+                    src="/features-3.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
@@ -280,7 +301,7 @@ export default function LandingPage() {
           {/* Domain carousel */}
           <div className="w-full overflow-hidden relative mb-16">
             <div className="flex animate-slideLeft gap-6">
-              {["AI Security", "Smart Cities", "IoT Monitoring", "Surveillance Analytics"].map((title, index) => (
+              {["Real-time Alerts", "Smart Detection", "Incident Response", "AI Analytics"].map((title, index) => (
                 <div
                   key={index}
                   className="flex-none w-72 h-64 md:h-80 bg-blue-500/10 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center p-4 relative"
@@ -292,7 +313,7 @@ export default function LandingPage() {
                   />
                 </div>
               ))}
-              {["AI Security", "Smart Cities", "IoT Monitoring", "Surveillance Analytics"].map((title, index) => (
+              {["Real-time Alerts", "Smart Detection", "Incident Response", "AI Analytics"].map((title, index) => (
                 <div
                   key={`dup-${index}`}
                   className="flex-none w-72 h-64 md:h-80 bg-blue-400/10 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center p-4 relative"
@@ -313,7 +334,7 @@ export default function LandingPage() {
           {/* Left Side Image */}
           <div className="absolute top-0 left-0 w-1/2 h-full overflow-hidden rounded-l-3xl md:rounded-2xl">
               <img
-                src="/smart-city.png"
+                src="/solutions.png"
                 alt="Feature"
                 className="w-full h-full object-cover object-center"
               />

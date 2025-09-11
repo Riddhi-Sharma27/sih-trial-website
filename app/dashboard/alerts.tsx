@@ -59,7 +59,7 @@ export default function Alerts() {
       formData.append("video", file)
 
       // ✅ Calls backend endpoint (FastAPI) → triggers TwillioWhatsappBotFinal.py
-      const res = await fetch("http://localhost:8000/process-video", {
+      const res = await fetch("http://127.0.0.1:8000/process-video", {
         method: "POST",
         body: formData,
       })

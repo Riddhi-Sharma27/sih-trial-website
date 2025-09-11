@@ -256,22 +256,21 @@ def main():
     else:
         print("Invalid choice. Exiting.")
 
-app = FastAPI()
-alerts_store = []
+# app = FastAPI()
+# alerts_store = []
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # later restrict to your frontend domain
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # later restrict to your frontend domain
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
-@app.get("/alerts")
-def get_alerts():
-    return {"alerts": alerts_store}
+# @app.get("/alerts")
+# def get_alerts():
+#     return {"alerts": alerts_store}
 
 
 if __name__ == "__main__":
-    threading.Thread(target=main, daemon=True).start()
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    main()

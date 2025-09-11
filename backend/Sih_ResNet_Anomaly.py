@@ -58,4 +58,7 @@ def process_batch(frame_batch: list[FrameData]) -> bool:
         if pred == 1:
             anomaly_found_in_batch = True
             break
+    print(f"[DEBUG] Processing batch of {len(frame_batch)} frames")
+    print(f"[DEBUG] Feature shape: {features.shape}")
+    print(f"[DEBUG] Predictions: {predictions[:10]}")
     return anomaly_found_in_batch
